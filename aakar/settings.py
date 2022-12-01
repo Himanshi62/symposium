@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-t1q-*^o&*9qdey5)uq1dk9683_3yz87pm4ol@doxgwemwalk4&"
+SECRET_KEY = "django-insecure-hm*9hiw2-9=ecd%w52*uxe8i5qv4et@%7s8(5lu1i!#*v-jgpy"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -95,7 +95,7 @@ TEMPLATES = [
 
 SITE_ID = 3
 
-LOGIN_REDIRECT_URL = '/submission'
+LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 SOCIALACCOUNT_LOGIN_ON_GET=True
 ACCOUNT_LOGOUT_ON_GET=True
@@ -165,3 +165,8 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

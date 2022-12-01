@@ -9,35 +9,52 @@ from .models import Submission
 
 # Create your views here.
 
-def home(request):
-    return render(request, "home.html")
-def submission(request):
+
+def registerLogiq(request):
     return render(request, "submission.html")
+
+def index(request):
+    user = request.user
+    is_filled = False 
+    if user.is_authenticated:
+        email = user.email
+        is_filled = len(Submission.objects.filter(email=email))==1
+    print(is_filled)
+
+    return render(request, "index.html",
+    {
+        'is_filled':is_filled
+    })
+
+def logiq(request):
+    user = request.user
+    is_filled = False 
+    if user.is_authenticated:
+        email = user.email
+        is_filled = len(Submission.objects.filter(email=email))==1
+    return render(request, "logiq.html",
+    {
+        'is_filled':is_filled
+    })
 
 
 def submitted(request):
     if request.method == "POST":
         user = request.user
-        author = request.POST.get('author', '')
+        name = request.POST.get('name', '')
         email = user.email
         colgName = request.POST.get('colgName', '')
-        degree = request.POST.get('degree', '')
+        branch = request.POST.get('branch', '')
         mobileNo = request.POST.get('mobileNo', '')
-        co1 = request.POST.get('co1', '')
-        mail1 = request.POST.get('mail1', '')
-        co2 = request.POST.get('co2', '')
-        mail2 = request.POST.get('mail2', '')
-        co3 = request.POST.get('co3', '')
-        mail3 = request.POST.get('mail3', '')
-        field = request.POST.get('field', '')
-        title = request.POST.get('title', '')
-        others = request.POST.get('others', '')
-        abstract = request.POST.get('abstract', '')
-        authentication = request.POST.get('authentication', '')
+        # mail = request.POST.get('mail', '')
+        program = request.POST.get('program', '')
+        year = request.POST.get('year', '')
+        address = request.POST.get('address', '')
+        roll_no = request.POST.get('roll_no', '')
 
-        response = Submission(author=author, email=email, colgName=colgName,  degree=degree, mobileNo=mobileNo,
-                              co1=co1, mail1=mail1, co2=co2, mail2=mail2, co3=co3, mail3=mail3, field=field, title=title, others=others, abstract=abstract, authentication=authentication)
+        response = Submission(name=name, email=email, colgName=colgName,  branch=branch, mobileNo=mobileNo,
+                              year=year, roll_no=roll_no, address=address, program=program)
         response.save()
 
-    return  redirect('home')
+    return  redirect('index')
 
